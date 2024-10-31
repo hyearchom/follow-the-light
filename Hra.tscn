@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://4lrntre0udio"]
+
+[ext_resource type="PackedScene" uid="uid://dyxbyujdo5dvv" path="res://mesh/karavela.blend" id="1_icjsi"]
+
+[node name="Hra" type="Node"]
+
+[node name="Prostredi" type="Node3D" parent="."]
+
+[node name="karavela" parent="Prostredi" instance=ExtResource("1_icjsi")]

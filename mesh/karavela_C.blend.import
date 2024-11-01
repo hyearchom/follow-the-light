@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dyxbyujdo5dvv"
-path="res://.godot/imported/karavela.blend-41e6f9a83cd7f91f910a4d39c0f03ff2.scn"
+uid="uid://bydk6v7droaby"
+path="res://.godot/imported/karavela_C.blend-78f4a90c878b64b076dea47aed8d35fe.scn"
 
 [deps]
 
-source_file="res://mesh/karavela.blend"
-dest_files=["res://.godot/imported/karavela.blend-41e6f9a83cd7f91f910a4d39c0f03ff2.scn"]
+source_file="res://mesh/karavela_C.blend"
+dest_files=["res://.godot/imported/karavela_C.blend-78f4a90c878b64b076dea47aed8d35fe.scn"]
 
 [params]
 

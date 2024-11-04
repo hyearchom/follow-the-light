@@ -37,11 +37,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		zamirit_pohled(event)
-	elif event is InputEventMouseButton:
-		_zvolit_akci(event)
+#func _unhandled_input(event):
+	#if event is InputEventMouseMotion:
+		#zamirit_pohled(event)
+	#elif event is InputEventMouseButton:
+		#_zvolit_akci(event)
 
 func zamirit_pohled(event):
 	var sirka = -event.relative.x *CITLIVOST_MYSI

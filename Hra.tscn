@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://4lrntre0udio"]
+[gd_scene load_steps=24 format=4 uid="uid://4lrntre0udio"]
 
 [ext_resource type="Material" uid="uid://byu2p77m7a1js" path="res://mesh/drevo.tres" id="1_38gjj"]
 [ext_resource type="Script" path="res://hrac.gd" id="2_sf7wb"]
 [ext_resource type="Script" path="res://clen.gd" id="3_oj5pv"]
+[ext_resource type="Script" path="res://stanoviste.gd" id="4_10gmi"]
+[ext_resource type="Script" path="res://Cinnost.gd" id="5_oqlis"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_72g3r"]
 ground_bottom_color = Color(0.10174, 0.165009, 0.323808, 1)
@@ -107,6 +109,11 @@ height = 1.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3c32"]
 albedo_color = Color(1, 0, 0, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_qed62"]
+radius = 1.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_sa5xh"]
+
 [node name="Hra" type="Node"]
 
 [node name="Prostredi" type="Node3D" parent="."]
@@ -131,18 +138,18 @@ surface_material_override/0 = ExtResource("1_38gjj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Prostredi/Lodka /StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x0piw")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Prostredi"]
+[node name="Lod" type="NavigationRegion3D" parent="Prostredi"]
 navigation_mesh = SubResource("NavigationMesh_gkdyx")
 
-[node name="trup" type="MeshInstance3D" parent="Prostredi/NavigationRegion3D"]
+[node name="trup" type="MeshInstance3D" parent="Prostredi/Lod"]
 transform = Transform3D(3.14318, 0, 0, 0, 3.14318, 0, 0, 0, 17.5534, 0, -2.36328, 1.89651)
 mesh = SubResource("ArrayMesh_hxugk")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_38gjj")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Prostredi/NavigationRegion3D/trup"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Prostredi/Lod/trup"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Prostredi/NavigationRegion3D/trup/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Prostredi/Lod/trup/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_v7kep")
 
 [node name="Posadka" type="Node3D" parent="Prostredi"]
@@ -154,6 +161,7 @@ script = ExtResource("2_sf7wb")
 
 [node name="Tvar" type="MeshInstance3D" parent="Prostredi/Posadka/Hrac"]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_ocq1d")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j62ml")
@@ -165,6 +173,7 @@ shape = SubResource("CapsuleShape3D_ulhd6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
 [node name="Oci" type="Camera3D" parent="Prostredi/Posadka/Hrac/Hlava"]
+current = true
 
 [node name="Dotek" type="RayCast3D" parent="Prostredi/Posadka/Hrac/Hlava/Oci"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
@@ -210,6 +219,44 @@ omni_range = 2.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Prostredi/Posadka/Clen"]
 
-[node name="Profil" type="Camera3D" parent="Prostredi"]
+[node name="Stanoviste" type="Node3D" parent="Prostredi"]
+
+[node name="Stanoviste" type="Area3D" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86961, 5.43199)
+collision_mask = 17
+script = ExtResource("4_10gmi")
+nazev_cinnosti = "A"
+Cinnost = NodePath("../../../Zobrazeni/Cinnost")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Prostredi/Stanoviste/Stanoviste"]
+shape = SubResource("SphereShape3D_qed62")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Prostredi/Stanoviste/Stanoviste"]
+mesh = SubResource("BoxMesh_sa5xh")
+
+[node name="Pohled_shora" type="Camera3D" parent="Prostredi"]
 transform = Transform3D(0.999936, -0.00851952, 0.00743272, 0, 0.657409, 0.753534, -0.0113061, -0.753486, 0.657367, 0.137845, 21.0078, 21.6899)
-current = true
+
+[node name="Zobrazeni" type="CanvasLayer" parent="."]
+
+[node name="Cinnost" type="CenterContainer" parent="Zobrazeni"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_oqlis")
+
+[node name="Label" type="Label" parent="Zobrazeni/Cinnost"]
+visible = false
+layout_mode = 2
+text = "Test"
+
+[connection signal="body_entered" from="Prostredi/Stanoviste/Stanoviste" to="Prostredi/Stanoviste/Stanoviste" method="_prichod"]
+[connection signal="body_exited" from="Prostredi/Stanoviste/Stanoviste" to="Prostredi/Stanoviste/Stanoviste" method="_odchod"]

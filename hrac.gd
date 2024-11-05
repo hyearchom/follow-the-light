@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal aktivovat_objekt
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const CITLIVOST_MYSI = 0.01
@@ -12,6 +14,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 func _physics_process(delta):
 	#print($Hlava/Oci/Dotek.get_collider())
@@ -37,11 +40,15 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-#func _unhandled_input(event):
-	#if event is InputEventMouseMotion:
-		#zamirit_pohled(event)
-	#elif event is InputEventMouseButton:
-		#_zvolit_akci(event)
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		zamirit_pohled(event)
+	elif event is InputEventMouseButton:
+		_zvolit_akci(event)
+	elif event.is_action_pressed("vyber"):
+		aktivovat_objekt.emit()
+
 
 func zamirit_pohled(event):
 	var sirka = -event.relative.x *CITLIVOST_MYSI
@@ -50,6 +57,7 @@ func zamirit_pohled(event):
 	$Hlava.rotate_y(sirka)
 	Oci.rotate_x(vyska)
 	Oci.rotation.x = clampf(Oci.rotation.x, -deg_to_rad(ZORNE_POLE), deg_to_rad(ZORNE_POLE))
+
 
 func _zvolit_akci(event):
 	var terc = $Hlava/Oci/Dotek.get_collider()

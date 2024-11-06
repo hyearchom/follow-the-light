@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm14hpli7118e"]
+
+[ext_resource type="Script" path="res://stanoviste.gd" id="1_j37h4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qed62"]
+radius = 1.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_sa5xh"]
+
+[node name="Stanoviste" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86961, 5.43199)
+collision_mask = 17
+script = ExtResource("1_j37h4")
+nazev_cinnosti = "A"
+delka = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qed62")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sa5xh")
+
+[connection signal="body_entered" from="." to="." method="_prichod"]
+[connection signal="body_exited" from="." to="." method="_odchod"]

@@ -1,7 +1,20 @@
-extends CenterContainer
+extends Control
 
-@onready var Napis := $Label
+func zacatek(nazev, delka) -> void:
+	show()
+	$Nazev.text = nazev
+	$Casovac.start()
+	$Prubeh.max_value = delka
+	$Prubeh.value = delka
 
-func vypsat(zprava) -> void:
-	Napis.show()
-	Napis.text = zprava
+
+func konec() -> void:
+	hide()
+	$Casovac.stop()
+
+
+func _zmenit_prubeh() -> void:
+	$Prubeh.value -= 1
+	if $Prubeh.value == 0:
+		konec()
+		

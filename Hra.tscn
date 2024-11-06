@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=4 uid="uid://4lrntre0udio"]
+[gd_scene load_steps=22 format=4 uid="uid://4lrntre0udio"]
 
 [ext_resource type="Material" uid="uid://byu2p77m7a1js" path="res://mesh/drevo.tres" id="1_38gjj"]
 [ext_resource type="Script" path="res://hrac.gd" id="2_sf7wb"]
 [ext_resource type="Script" path="res://clen.gd" id="3_oj5pv"]
-[ext_resource type="Script" path="res://stanoviste.gd" id="4_10gmi"]
+[ext_resource type="PackedScene" uid="uid://dm14hpli7118e" path="res://stanoviste.tscn" id="4_1nxxg"]
 [ext_resource type="Script" path="res://Cinnost.gd" id="5_oqlis"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_72g3r"]
@@ -109,11 +109,6 @@ height = 1.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3c32"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qed62"]
-radius = 1.25
-
-[sub_resource type="BoxMesh" id="BoxMesh_sa5xh"]
-
 [node name="Hra" type="Node"]
 
 [node name="Prostredi" type="Node3D" parent="."]
@@ -187,10 +182,11 @@ light_energy = 0.5
 omni_range = 2.0
 
 [node name="Clen" type="CharacterBody3D" parent="Prostredi/Posadka"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51177, 4, -2.06344)
 collision_layer = 16
 floor_snap_length = 0.0
 script = ExtResource("3_oj5pv")
+metadata/_edit_group_ = true
 
 [node name="Tvar" type="MeshInstance3D" parent="Prostredi/Posadka/Clen"]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -221,25 +217,41 @@ omni_range = 2.0
 
 [node name="Stanoviste" type="Node3D" parent="Prostredi"]
 
-[node name="Stanoviste" type="Area3D" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86961, 5.43199)
-collision_mask = 17
-script = ExtResource("4_10gmi")
-nazev_cinnosti = "A"
-Cinnost = NodePath("../../../Zobrazeni/Cinnost")
+[node name="A" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190835, 2.02387, 5.32771)
+Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Prostredi/Stanoviste/Stanoviste"]
-shape = SubResource("SphereShape3D_qed62")
+[node name="B" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27658, 1.86961, -2.55187)
+nazev_cinnosti = "B"
+Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Prostredi/Stanoviste/Stanoviste"]
-mesh = SubResource("BoxMesh_sa5xh")
+[node name="C" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79955, 1.86961, 1.7539)
+nazev_cinnosti = "C"
+Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
+
+[node name="D" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.628974, 4.72205, 14.4035)
+nazev_cinnosti = "D"
+Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
+
+[node name="E" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.628974, 6.60315, -5.91529)
+nazev_cinnosti = "E"
+Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
+
+[node name="F" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54463, 6.60315, -11.1338)
+nazev_cinnosti = "F"
+Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
 
 [node name="Pohled_shora" type="Camera3D" parent="Prostredi"]
 transform = Transform3D(0.999936, -0.00851952, 0.00743272, 0, 0.657409, 0.753534, -0.0113061, -0.753486, 0.657367, 0.137845, 21.0078, 21.6899)
 
 [node name="Zobrazeni" type="CanvasLayer" parent="."]
 
-[node name="Cinnost" type="CenterContainer" parent="Zobrazeni"]
+[node name="NaStred" type="CenterContainer" parent="Zobrazeni"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -251,12 +263,26 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_oqlis")
 
-[node name="Label" type="Label" parent="Zobrazeni/Cinnost"]
+[node name="Cinnost" type="VBoxContainer" parent="Zobrazeni/NaStred"]
 visible = false
 layout_mode = 2
-text = "Test"
+script = ExtResource("5_oqlis")
 
-[connection signal="body_entered" from="Prostredi/Stanoviste/Stanoviste" to="Prostredi/Stanoviste/Stanoviste" method="_prichod"]
-[connection signal="body_exited" from="Prostredi/Stanoviste/Stanoviste" to="Prostredi/Stanoviste/Stanoviste" method="_odchod"]
+[node name="Nazev" type="Label" parent="Zobrazeni/NaStred/Cinnost"]
+layout_mode = 2
+text = "Test"
+horizontal_alignment = 1
+
+[node name="Prubeh" type="ProgressBar" parent="Zobrazeni/NaStred/Cinnost"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+mouse_filter = 1
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="Casovac" type="Timer" parent="Zobrazeni/NaStred/Cinnost"]
+
+[connection signal="timeout" from="Zobrazeni/NaStred/Cinnost/Casovac" to="Zobrazeni/NaStred/Cinnost" method="_zmenit_prubeh"]

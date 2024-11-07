@@ -186,6 +186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51177, 4, -2.06344)
 collision_layer = 16
 floor_snap_length = 0.0
 script = ExtResource("3_oj5pv")
+aktivace = true
 metadata/_edit_group_ = true
 
 [node name="Tvar" type="MeshInstance3D" parent="Prostredi/Posadka/Clen"]
@@ -215,6 +216,111 @@ omni_range = 2.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Prostredi/Posadka/Clen"]
 
+[node name="Clen2" type="CharacterBody3D" parent="Prostredi/Posadka"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51177, 4, -2.06344)
+collision_layer = 16
+floor_snap_length = 0.0
+script = ExtResource("3_oj5pv")
+aktivace = true
+metadata/_edit_group_ = true
+
+[node name="Tvar" type="MeshInstance3D" parent="Prostredi/Posadka/Clen2"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ocq1d")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3c32")
+
+[node name="Kuze" type="CollisionShape3D" parent="Prostredi/Posadka/Clen2"]
+shape = SubResource("CapsuleShape3D_ulhd6")
+
+[node name="Hlava" type="Node3D" parent="Prostredi/Posadka/Clen2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Oci" type="Camera3D" parent="Prostredi/Posadka/Clen2/Hlava"]
+
+[node name="Dotek" type="RayCast3D" parent="Prostredi/Posadka/Clen2/Hlava/Oci"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+
+[node name="Svetlo" type="OmniLight3D" parent="Prostredi/Posadka/Clen2"]
+visible = false
+light_color = Color(0.693109, 0.303795, 0, 1)
+light_energy = 0.5
+omni_range = 2.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Prostredi/Posadka/Clen2"]
+
+[node name="Clen3" type="CharacterBody3D" parent="Prostredi/Posadka"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51177, 4, -2.06344)
+collision_layer = 16
+floor_snap_length = 0.0
+script = ExtResource("3_oj5pv")
+aktivace = true
+metadata/_edit_group_ = true
+
+[node name="Tvar" type="MeshInstance3D" parent="Prostredi/Posadka/Clen3"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ocq1d")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3c32")
+
+[node name="Kuze" type="CollisionShape3D" parent="Prostredi/Posadka/Clen3"]
+shape = SubResource("CapsuleShape3D_ulhd6")
+
+[node name="Hlava" type="Node3D" parent="Prostredi/Posadka/Clen3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Oci" type="Camera3D" parent="Prostredi/Posadka/Clen3/Hlava"]
+
+[node name="Dotek" type="RayCast3D" parent="Prostredi/Posadka/Clen3/Hlava/Oci"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+
+[node name="Svetlo" type="OmniLight3D" parent="Prostredi/Posadka/Clen3"]
+visible = false
+light_color = Color(0.693109, 0.303795, 0, 1)
+light_energy = 0.5
+omni_range = 2.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Prostredi/Posadka/Clen3"]
+
+[node name="Clen4" type="CharacterBody3D" parent="Prostredi/Posadka"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51177, 4, -2.06344)
+collision_layer = 16
+floor_snap_length = 0.0
+script = ExtResource("3_oj5pv")
+aktivace = true
+metadata/_edit_group_ = true
+
+[node name="Tvar" type="MeshInstance3D" parent="Prostredi/Posadka/Clen4"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ocq1d")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3c32")
+
+[node name="Kuze" type="CollisionShape3D" parent="Prostredi/Posadka/Clen4"]
+shape = SubResource("CapsuleShape3D_ulhd6")
+
+[node name="Hlava" type="Node3D" parent="Prostredi/Posadka/Clen4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Oci" type="Camera3D" parent="Prostredi/Posadka/Clen4/Hlava"]
+
+[node name="Dotek" type="RayCast3D" parent="Prostredi/Posadka/Clen4/Hlava/Oci"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+
+[node name="Svetlo" type="OmniLight3D" parent="Prostredi/Posadka/Clen4"]
+visible = false
+light_color = Color(0.693109, 0.303795, 0, 1)
+light_energy = 0.5
+omni_range = 2.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Prostredi/Posadka/Clen4"]
+
 [node name="Stanoviste" type="Node3D" parent="Prostredi"]
 
 [node name="A" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
@@ -222,7 +328,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190835, 2.02387, 5.32771)
 Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
 
 [node name="B" parent="Prostredi/Stanoviste" node_paths=PackedStringArray("Cinnost") instance=ExtResource("4_1nxxg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27658, 1.86961, -2.55187)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.27658, 1.86961, -2.55187)
 nazev_cinnosti = "B"
 Cinnost = NodePath("../../../Zobrazeni/NaStred/Cinnost")
 

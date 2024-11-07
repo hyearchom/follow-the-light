@@ -1,8 +1,13 @@
 extends Control
 
-func zacatek(nazev, delka) -> void:
+signal cinnost_splnena
+
+var nazev: StringName
+
+func zacatek(oznaceni, delka) -> void:
 	show()
-	$Nazev.text = nazev
+	nazev = oznaceni
+	$Nazev.text = oznaceni
 	$Casovac.start()
 	$Prubeh.max_value = delka
 	$Prubeh.value = delka
@@ -16,5 +21,5 @@ func konec() -> void:
 func _zmenit_prubeh() -> void:
 	$Prubeh.value -= 1
 	if $Prubeh.value == 0:
+		cinnost_splnena.emit(nazev)
 		konec()
-		

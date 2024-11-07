@@ -2,6 +2,7 @@ extends Area3D
 
 @export var nazev_cinnosti: String = 'Test'
 @export var delka: int
+var obsazeno := false
 
 @export var Cinnost: Node
 
@@ -20,7 +21,6 @@ func _aktivovat_cinnost(stav:=true) -> void:
 			Cinnost.zacatek(nazev_cinnosti, delka)
 		false:
 			Cinnost.konec()
-		
 
 
 func _odchod(telo: Node3D) -> void:

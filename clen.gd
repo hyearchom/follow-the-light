@@ -22,11 +22,12 @@ func actor_setup():
 	await get_tree().physics_frame
 
 	zacatek_pohybu = true
-	set_movement_target()
+	set_movement_target(_najit_volne_stanoviste())
+	#set_movement_target()
 
 
-func set_movement_target():
-	var movement_target: Vector3 = Hrac.global_position
+func set_movement_target(movement_target: Vector3):
+	#var movement_target: Vector3 = Hrac.global_position
 	navigation_agent.set_target_position(movement_target)
 	#print(movement_target)
 
@@ -40,8 +41,18 @@ func _physics_process(_delta):
 
 
 func _navigovat_do_cile() -> Vector3:
-	set_movement_target()
 	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 
 	return current_agent_position.direction_to(next_path_position)
+
+
+func _najit_volne_stanoviste() -> Vector3:
+	var stanoviste := get_tree().get_nodes_in_group('stanoviste')
+	for misto in stanoviste:
+		if not misto.obsazeno:
+			misto.obsazeno = true
+			var cil = misto.get_node('Obsluha').global_position
+			#print(cil)
+			return cil
+	return position

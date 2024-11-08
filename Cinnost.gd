@@ -1,8 +1,13 @@
 extends Control
 
 signal cinnost_splnena
+@export var PLAVBA: Resource
 
 var nazev: StringName
+
+func _ready() -> void:
+	cinnost_splnena.connect(PLAVBA.pohyb_lodi)
+
 
 func zacatek(oznaceni, delka) -> void:
 	show()
@@ -21,5 +26,7 @@ func konec() -> void:
 func _zmenit_prubeh() -> void:
 	$Prubeh.value -= 1
 	if $Prubeh.value == 0:
+		if nazev in PLAVBA:
+			PLAVBA.set(nazev, 1)
 		cinnost_splnena.emit(nazev)
 		konec()
